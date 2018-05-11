@@ -1,5 +1,6 @@
 #!/usr/bin/env python2
 
+import sys
 import os
 import requests
 import hashlib
@@ -35,7 +36,7 @@ class MendeleLibrary(object):
 
         response = requests.post('https://mendele.sifriapp.co.il/myMendelelibrary', headers=self._request_headers)
         if 'NO ACCESS' in response.content:
-            raise MendeleAccessDenied('Wrong e-mail and password combination!')
+            raise self.MendeleAccessDenied('Wrong e-mail and password combination!')
 
         xml_library = xml.etree.ElementTree.fromstring(response.content)
         for book_entry in xml_library.findall("{http://www.w3.org/2005/Atom}entry"):
@@ -110,7 +111,11 @@ def main():
     email = raw_input("Enter e-mail: ")
     password = getpass.getpass("Password: ")
 
-    download_all(email, password, output_path)
+    try:
+        download_all(email, password, output_path)
+    except MendeleLibrary.MendeleAccessDenied as e:
+        print >> sys.stderr, e.message
+
 
 
 if __name__ == '__main__':
