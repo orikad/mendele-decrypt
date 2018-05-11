@@ -9,7 +9,7 @@ This needs your user name (e-mail) and password.
 ```bash
 python download_mendele.py 
 ```
-This will ask for you e-mail, password and download you e-book library to `mendele_books`.
+This will ask for you e-mail and password, and then will download your e-book library to `mendele_books`.
 
 ## decrypt.py
 Decrypts mendele's e-books into epubs. Note that this script is really not needed anymore. Just use `download_mendele.py` instead.
