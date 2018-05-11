@@ -17,9 +17,17 @@ python download_mendele.py
 ```
 This will ask for you e-mail and password, and then will download your e-book library to `mendele_books`.
 
+
+
+
+
+
+
+
+
 ___
 Note that the `decrypt.py` script is really not needed anymore. Just use `download_mendele.py` instead. You can ignore the rest of this README.
-___
+
 ## decrypt.py
 Decrypts mendele's e-books into epubs. 
 These books are simply encrypted with a const password (md5 of a weird string and your email).
