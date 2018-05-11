@@ -6,13 +6,22 @@ Downloads your entire Mendele e-book library to .epub files.
 This needs your user name (e-mail) and password.
 
 ### Usage
+Make sure you have the requirements install using
+```bash
+pip install -r requirements.txt
+```
+
+Then simply:
 ```bash
 python download_mendele.py 
 ```
 This will ask for you e-mail and password, and then will download your e-book library to `mendele_books`.
 
+___
+Note that the `decrypt.py` script is really not needed anymore. Just use `download_mendele.py` instead. You can ignore the rest of this README.
+___
 ## decrypt.py
-Decrypts mendele's e-books into epubs. Note that this script is really not needed anymore. Just use `download_mendele.py` instead.
+Decrypts mendele's e-books into epubs. 
 These books are simply encrypted with a const password (md5 of a weird string and your email).
 
 This script takes an encrypted book (they call this 'sifri') and decrypts it into an epub you can use with any e-reader.
@@ -26,12 +35,7 @@ If you use a re-signed app you can also perform this on a non-jailbroken device,
 
 Also pre-iOS 8.3, iOS had no access prevention to the Documents directory, so an old device would probably work too.
 
-# Usage
-Make sure you have the requirements install using
-```bash
-pip install -r requirements.txt
-```
-
+#### Usage
 Then to decrypt:
 ```bash
 ./decrypt.py your@email.com input-file.sifri output-file.epub
