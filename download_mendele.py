@@ -43,10 +43,11 @@ class MendeleLibrary(object):
             title = book_entry.findall("{http://www.w3.org/2005/Atom}title")[0].text
             for link in book_entry.findall("{http://www.w3.org/2005/Atom}link"):
                 link = dict(link.items())
-                if link["type"] == 'application/epub+zip':
+                if link["type"] == 'application/epub+zip' or link.get('href', '').endswith('.epub'):
                     break
             else:
-                print "Warning: did not find epub link for {}".format(title)
+                print u"ERROR: did not find epub link for {}".format(title)
+                continue
 
             self._library[title] = link['href']
 
@@ -65,7 +66,7 @@ class MendeleLibrary(object):
         book_data = response.content
 
         if not book_data.startswith("PK"):
-            print "Download error for title {}, downloaded file doesn't look like an EPUB".format(title)
+            print u"Download error for title {}, downloaded file doesn't look like an EPUB".format(title)
             return None
 
         return book_data
